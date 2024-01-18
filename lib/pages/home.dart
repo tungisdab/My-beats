@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_beats/components/song_header.dart';
 import 'package:my_beats/components/trending_song_slider.dart';
+import 'package:my_beats/controller/song_data_controller.dart';
 import 'package:my_beats/pages/song_tile.dart';
 
 class Home extends StatefulWidget {
@@ -13,6 +15,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    SongDataController songDataController = Get.put(SongDataController());
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(10.0),
@@ -27,9 +30,14 @@ class _HomeState extends State<Home> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Cloud Song",
-                    style: Theme.of(context).textTheme.bodySmall,
+                  InkWell(
+                    onTap: (){
+                      songDataController.getLocalSongs();
+                    },
+                    child: Text(
+                      "Cloud Song",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                   ),
                   Text(
                     "Device Song",
@@ -37,6 +45,17 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
+              SizedBox(height: 20),
+              SongTile(),
+              SizedBox(height: 20),
+              SongTile(),
+              SizedBox(height: 20),
+              SongTile(),
+              SizedBox(height: 20),
+              SongTile(),
+              SizedBox(height: 20),
+              SongTile(),
+              SizedBox(height: 20),
               SongTile(),
             ],
           ),

@@ -18,7 +18,7 @@ class _SongHeaderState extends State<SongHeader> {
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.25,
+            width: MediaQuery.of(context).size.width * 0.09,
             child: Image.asset("assets/images/ig.png", fit: BoxFit.cover),
           ),
         ),

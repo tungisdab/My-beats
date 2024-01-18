@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:my_beats/config/color.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-class SongAndVolume extends StatelessWidget {
+class SongAndVolume extends StatefulWidget {
   const SongAndVolume({super.key});
 
   @override
+  State<SongAndVolume> createState() => _SongDetailState();
+}
+
+class _SongDetailState extends State<SongAndVolume> {
+  var value = 30.0;
+  @override
   Widget build(BuildContext context) {
-    SongPlayerController songPlayerController = Get.put(SongPlayerController());
-    return Obx(() => SfRadialGauge(
+    return SfRadialGauge(
       animationDuration: 1,
       enableLoadingAnimation: true,
       axes: [
@@ -18,8 +23,8 @@ class SongAndVolume extends StatelessWidget {
           endAngle: 180,
           canRotateLabels: false,
           interval: 10,
-          isInversed: false,
-          maximum: 1,
+          isInversed: true,
+          maximum: 100,
           minimum: 0,
           showAxisLine: true,
           showLabels: false,
@@ -27,16 +32,18 @@ class SongAndVolume extends StatelessWidget {
           ranges: [
             GaugeRange(
               startValue: 0,
-              endValue: songPlayerController.volumLavel.value,
+              endValue: value,
               color: primaryColor,
             )
           ],
           pointers: [
             MarkerPointer(
               color: primaryColor,
-              value: songPlayerController.volumLavel.value,
-              onValueChanged: (value) {
-                songPlayerController.chnageVolum(value);
+              value: value,
+              onValueChanged: (valuee) {
+                setState(() {
+                  value = valuee;
+                });
               },
               enableAnimation: true,
               enableDragging: true,
@@ -47,27 +54,14 @@ class SongAndVolume extends StatelessWidget {
           ],
           annotations: [
             GaugeAnnotation(
-              // horizontalAlignment: GaugeAlignment.center,
-              widget: songPlayerController.isCouldSoundPlaying.value ? Container(
-                width: 270,
-                height: 270,
+              horizontalAlignment: GaugeAlignment.center,
+              widget: Container(
+                width: 280,
+                height: 280,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(1000),
                   image: DecorationImage(
-                    image: NetworkImage(songPlayerController.albumUrl.value)
-                    ,
-                    fit: BoxFit.cover
-                  ),
-                  
-                  color: divColor,
-                ),
-              ) : Container(
-                width: 270,
-                height: 270,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(1000),
-                  image: DecorationImage(
-                    image:   AssetImage("assets/images/cover.jpg"),
+                    image:   AssetImage("assets/images/ig.png"),
                      fit: BoxFit.cover
                   ),
                   color: divColor,
@@ -77,6 +71,6 @@ class SongAndVolume extends StatelessWidget {
           ],
         ),
       ],
-    ));
+    );
   }
 }
