@@ -4,6 +4,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 class SongDataController extends GetxController {
   final audioQuery = OnAudioQuery();
   RxList<SongModel> localSongList = <SongModel>[].obs;
+  RxBool isDeviceSong = false.obs;
 
    void getLocalSongs() async {
     localSongList.value = await audioQuery.querySongs(
@@ -13,6 +14,5 @@ class SongDataController extends GetxController {
       uriType: UriType.EXTERNAL,
     );
 
-    print(localSongList.value);
   }
 }

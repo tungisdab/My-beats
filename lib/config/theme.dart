@@ -3,7 +3,7 @@ import 'package:my_beats/config/color.dart';
 
 final darkTheme = ThemeData(
   useMaterial3: true,
-  brightness: Brightness.dark,
+  // brightness: Brightness.dark,
   colorScheme: const ColorScheme.dark(
     background: bgColor,
     primary: primaryColor,

@@ -61,7 +61,7 @@ class _SongDetailState extends State<SongAndVolume> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(1000),
                   image: DecorationImage(
-                    image:   AssetImage("assets/images/ig.png"),
+                    image:   AssetImage("assets/icons/icon_app.png"),
                      fit: BoxFit.cover
                   ),
                   color: divColor,

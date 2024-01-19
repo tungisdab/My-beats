@@ -21,7 +21,6 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'My Beats',
       home: Home(),
-      // theme: ThemeData.light(),
       theme: darkTheme,
     );
   }

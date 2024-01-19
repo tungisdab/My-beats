@@ -32,31 +32,62 @@ class _HomeState extends State<Home> {
                 children: [
                   InkWell(
                     onTap: (){
-                      songDataController.getLocalSongs();
+                      // songDataController.getLocalSongs();
+                      songDataController.isDeviceSong.value = false;
                     },
                     child: Text(
                       "Cloud Song",
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
-                  Text(
-                    "Device Song",
-                    style: Theme.of(context).textTheme.bodySmall,
+                  InkWell(
+                    onTap: (){
+                      songDataController.isDeviceSong.value = true;
+                    },
+                    child: Text(
+                      "Device Song",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
-              SongTile(),
-              SizedBox(height: 20),
-              SongTile(),
-              SizedBox(height: 20),
-              SongTile(),
-              SizedBox(height: 20),
-              SongTile(),
-              SizedBox(height: 20),
-              SongTile(),
-              SizedBox(height: 20),
-              SongTile(),
+              // SizedBox(height: 20),
+              // SongTile(),
+              // SizedBox(height: 20),
+              // SongTile(),
+              // SizedBox(height: 20),
+              // SongTile(),
+              // SizedBox(height: 20),
+              // SongTile(),
+              // SizedBox(height: 20),
+              // SongTile(),
+              // SizedBox(height: 20),
+              // SongTile(),
+              Obx(() => songDataController.isDeviceSong.value 
+                ? Column(
+                  children: [
+                    SizedBox(height: 20),
+                    SongTile(),
+                    SizedBox(height: 20),
+                    SongTile(),
+                    
+                  ],
+                ) : Column(
+                  children: [
+                    SizedBox(height: 20),
+                    SongTile(),
+                    SizedBox(height: 20),
+                    SongTile(),
+                    SizedBox(height: 20),
+                    SongTile(),
+                    SizedBox(height: 20),
+                    SongTile(),
+                    SizedBox(height: 20),
+                    SongTile(),
+                    SizedBox(height: 20),
+                    SongTile(),
+                  ],
+                ))
             ],
           ),
         ),
