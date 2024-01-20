@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_beats/components/song_header.dart';
 import 'package:my_beats/components/trending_song_slider.dart';
+import 'package:my_beats/config/color.dart';
 import 'package:my_beats/controller/song_data_controller.dart';
 import 'package:my_beats/pages/song_tile.dart';
 
@@ -37,7 +38,9 @@ class _HomeState extends State<Home> {
                     },
                     child: Text(
                       "Cloud Song",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: songDataController.isDeviceSong.value ? lableColor : primaryColor,
+                      ),
                     ),
                   ),
                   InkWell(
@@ -46,7 +49,9 @@ class _HomeState extends State<Home> {
                     },
                     child: Text(
                       "Device Song",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: songDataController.isDeviceSong.value ? primaryColor : lableColor,
+                      ),
                     ),
                   ),
                 ],
@@ -65,13 +70,7 @@ class _HomeState extends State<Home> {
               // SongTile(),
               Obx(() => songDataController.isDeviceSong.value 
                 ? Column(
-                  children: [
-                    SizedBox(height: 20),
-                    SongTile(),
-                    SizedBox(height: 20),
-                    SongTile(),
-                    
-                  ],
+                  children: songDataController.localSongList.value.map((e) => SongTile()).toList()
                 ) : Column(
                   children: [
                     SizedBox(height: 20),
