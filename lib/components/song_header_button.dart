@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SongHeaderButton extends StatefulWidget {
   const SongHeaderButton({super.key});
@@ -13,17 +14,22 @@ class _SongHeaderButtonState extends State<SongHeaderButton> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.amber
-          ),
-          child: Center(
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
+        InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.amber
+            ),
+            child: Center(
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

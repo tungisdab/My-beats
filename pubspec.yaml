@@ -39,8 +39,10 @@ dependencies:
   carousel_slider: ^4.2.1
   syncfusion_flutter_gauges: ^24.1.45
   on_audio_query: ^2.9.0
-  permission_handler: ^11.1.0
+  permission_handler: ^11.2.0
   get: ^4.6.6
+  just_audio: ^0.9.36
+  device_info_plus: ^9.1.1
 
 dev_dependencies:
   flutter_test:

@@ -4,7 +4,9 @@ import 'package:my_beats/components/song_controller_button.dart';
 import 'package:my_beats/components/song_header_button.dart';
 
 class PlaySongPage extends StatefulWidget {
-  const PlaySongPage({super.key});
+  final String songTitle;
+  final String artistName;
+  const PlaySongPage({super.key, required this.songTitle, required this.artistName});
 
   @override
   State<PlaySongPage> createState() => _PlaySongPageState();
@@ -13,6 +15,8 @@ class PlaySongPage extends StatefulWidget {
 class _PlaySongPageState extends State<PlaySongPage> {
   @override
   Widget build(BuildContext context) {
+    final songTitle = widget.songTitle;
+    final artistName = widget.artistName;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -21,7 +25,8 @@ class _PlaySongPageState extends State<PlaySongPage> {
             SizedBox(height: 40),
             SongHeaderButton(),
             SizedBox(height: 20),
-            SongAndVolume(),
+            SongAndVolume(
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -40,9 +45,12 @@ class _PlaySongPageState extends State<PlaySongPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Say my name",
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 25),
+                  Flexible(
+                    child: Text(
+                      "$songTitle",
+                      maxLines: 2,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 25),
+                    ),
                   ),
                   Row(
                     children: [
@@ -59,7 +67,12 @@ class _PlaySongPageState extends State<PlaySongPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10,),
+            Flexible(
+              child: Text(
+                "$artistName",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 25, color: Colors.red),
+              ),
+            ),
             SongControllerButton(),
             
           ],

@@ -10,6 +10,7 @@ class SongAndVolume extends StatefulWidget {
 }
 
 class _SongDetailState extends State<SongAndVolume> {
+  
   var value = 30.0;
   @override
   Widget build(BuildContext context) {
@@ -61,9 +62,8 @@ class _SongDetailState extends State<SongAndVolume> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(1000),
                   image: DecorationImage(
-                    image:   AssetImage("assets/icons/icon_app.png"),
-                     fit: BoxFit.cover
-                  ),
+                      image: AssetImage("assets/images/ig.png"),
+                      fit: BoxFit.cover),
                   color: divColor,
                 ),
               ),
