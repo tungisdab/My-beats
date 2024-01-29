@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_beats/components/song_and_volume.dart';
 import 'package:my_beats/components/song_controller_button.dart';
 import 'package:my_beats/components/song_header_button.dart';
+import 'package:my_beats/controller/song_player_controller.dart';
 
 class PlaySongPage extends StatefulWidget {
-  final String songTitle;
-  final String artistName;
-  const PlaySongPage({super.key, required this.songTitle, required this.artistName});
+  const PlaySongPage({super.key});
 
   @override
   State<PlaySongPage> createState() => _PlaySongPageState();
@@ -15,8 +15,7 @@ class PlaySongPage extends StatefulWidget {
 class _PlaySongPageState extends State<PlaySongPage> {
   @override
   Widget build(BuildContext context) {
-    final songTitle = widget.songTitle;
-    final artistName = widget.artistName;
+    SongPlayerController songPlayerController = Get.put(SongPlayerController());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -25,8 +24,7 @@ class _PlaySongPageState extends State<PlaySongPage> {
             SizedBox(height: 40),
             SongHeaderButton(),
             SizedBox(height: 20),
-            SongAndVolume(
-            ),
+            SongAndVolume(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -46,12 +44,16 @@ class _PlaySongPageState extends State<PlaySongPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Flexible(
-                    child: Text(
-                      "$songTitle",
+                      child: Obx(
+                    () => Text(
+                      "${songPlayerController.songTitle.value}",
                       maxLines: 2,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 25),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.copyWith(fontSize: 25),
                     ),
-                  ),
+                  )),
                   Row(
                     children: [
                       Icon(
@@ -68,11 +70,16 @@ class _PlaySongPageState extends State<PlaySongPage> {
               ),
             ),
             Flexible(
-              child: Text(
-                "$artistName",
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 25, color: Colors.red),
+                child: Obx(
+              () => Text(
+                "${songPlayerController.songArtist.value}",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontSize: 25, color: Colors.red),
               ),
-            ),
+            )),
+            
             SongControllerButton(),
             
           ],

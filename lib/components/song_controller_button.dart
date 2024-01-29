@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_beats/config/color.dart';
 import 'package:my_beats/controller/song_data_controller.dart';
 import 'package:my_beats/controller/song_player_controller.dart';
 
@@ -24,7 +25,8 @@ class _SongControllerButtonState extends State<SongControllerButton> {
               Text("${songPlayerController.currentTime} "),
               Obx(
                 () => Slider(
-                  value: songPlayerController.sliderValue.value.clamp(0.0, songPlayerController.sliderValue.value),
+                  value: songPlayerController.sliderValue.value
+                      .clamp(0.0, songPlayerController.sliderValue.value),
                   onChanged: (value) {
                     songPlayerController.sliderValue.value = value;
 
@@ -33,7 +35,7 @@ class _SongControllerButtonState extends State<SongControllerButton> {
                   },
                   min: 0,
                   max: songPlayerController.sliderMaxValue.value,
-                  activeColor: Color.fromARGB(255, 240, 183, 249),
+                  activeColor: Color.fromARGB(255, 231, 171, 134),
                   inactiveColor: Color.fromARGB(255, 183, 184, 181),
                 ),
               ),
@@ -49,7 +51,7 @@ class _SongControllerButtonState extends State<SongControllerButton> {
                   children: [
                     InkWell(
                       onTap: () {
-
+                        songDataController.playPreviousSong();
                       },
                       child: Icon(
                         Icons.skip_previous,
@@ -83,10 +85,15 @@ class _SongControllerButtonState extends State<SongControllerButton> {
                   child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Icon(
-                      Icons.skip_previous,
-                      color: Colors.white,
-                      size: 40,
+                    InkWell(
+                      onTap: () {
+                        songDataController.playPreviousSong();
+                      },
+                      child: Icon(
+                        Icons.skip_previous,
+                        color: Colors.white,
+                        size: 40,
+                      ),
                     ),
                     InkWell(
                       onTap: () {
@@ -110,6 +117,30 @@ class _SongControllerButtonState extends State<SongControllerButton> {
                     ),
                   ],
                 )),
+        ),
+        SizedBox(height: 20),
+        InkWell(
+            onTap: () {
+              songPlayerController.setLoopSong();
+            },
+            child: Obx(
+              () => Icon(
+                Icons.loop,
+                color: songPlayerController.isLoop.value
+                    ? primaryColor
+                    : lableColor,
+              ),
+            )),
+        InkWell(
+          onTap: () {
+            songPlayerController.playRandomSong();
+          },
+          child: Obx(() => Icon(
+                Icons.shuffle_rounded,
+                color: songPlayerController.isSuffeled.value
+                    ? primaryColor
+                    : lableColor,
+              )),
         ),
       ],
     );

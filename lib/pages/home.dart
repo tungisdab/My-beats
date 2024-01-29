@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:my_beats/components/song_header.dart';
 import 'package:my_beats/components/trending_song_slider.dart';
 import 'package:my_beats/config/color.dart';
+import 'package:my_beats/controller/cloud_song_controller.dart';
 import 'package:my_beats/controller/song_data_controller.dart';
 import 'package:my_beats/controller/song_player_controller.dart';
 import 'package:my_beats/pages/play_song_page.dart';
 import 'package:my_beats/pages/song_tile.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,6 +21,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     SongDataController songDataController = Get.put(SongDataController());
     SongPlayerController songPlayerController = Get.put(SongPlayerController());
+    CloudSongController cloudSongController = Get.put(CloudSongController());
     return Scaffold(
         body: Padding(
       padding: EdgeInsets.all(10.0),
@@ -47,7 +50,7 @@ class _HomeState extends State<Home> {
                         ),
                   ),
                 ),
-              
+
                 // InkWell(
                 //   onTap: () async {
                 //     songDataController.isDeviceSong.value = true;
@@ -65,16 +68,17 @@ class _HomeState extends State<Home> {
                 InkWell(
                   onTap: () async {
                     songDataController.isDeviceSong.value = true;
-                    await songDataController.checkAndRequestPermissions(retry: true);
+                    await songDataController.checkAndRequestPermissions(
+                        retry: true);
                     await songDataController.getLocalSongs();
                   },
                   child: Text(
                     "check Song",
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: songDataController.isDeviceSong.value
-                          ? primaryColor
-                          : lableColor,
-                    ),
+                          color: songDataController.isDeviceSong.value
+                              ? primaryColor
+                              : lableColor,
+                        ),
                   ),
                 ),
                 // InkWell(
@@ -112,29 +116,21 @@ class _HomeState extends State<Home> {
                               songName: e.title,
                               onPress: () {
                                 songPlayerController.playLocalAudio(e);
-                                songDataController.findCurrentSongPlayingIndex(e.id);
-                                Get.to(PlaySongPage(
-                                  songTitle: e.title,
-                                  artistName: e.artist!,
-                                ));
+                                songDataController
+                                    .findCurrentSongPlayingIndex(e.id);
+                                Get.to(PlaySongPage());
                               },
                             ))
                         .toList())
                 : Column(
-                    children: [
-                      // SizedBox(height: 20),
-                      // SongTile(),
-                      // SizedBox(height: 20),
-                      // SongTile(),
-                      // SizedBox(height: 20),
-                      // SongTile(),
-                      // SizedBox(height: 20),
-                      // SongTile(),
-                      // SizedBox(height: 20),
-                      // SongTile(),
-                      // SizedBox(height: 20),
-                      // SongTile(),
-                    ],
+                    children: cloudSongController.cloudSongList.value.map((e) =>SongTile(
+                                  onPress: () {
+                                    songPlayerController.playCloudAudio(e);
+                                    songDataController.findCurrentSongPlayingIndex(e.id!);
+                                    Get.to(PlaySongPage());
+                                  },
+                                  songName: e.title!,
+                                ) ).toList(),
                   ))
           ],
         ),
