@@ -16,7 +16,7 @@ class _TrendingSongSliderState extends State<TrendingSongSlider> {
     List<Widget> sliderItems = [
       Container(
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/images/ig.png"), fit: BoxFit.cover),
+          image: DecorationImage(image: AssetImage("assets/images/a0.jpg"), fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(10),
           color: divColor
         ),

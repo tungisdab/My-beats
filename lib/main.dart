@@ -4,7 +4,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:my_beats/config/theme.dart';
 import 'package:my_beats/firebase_options.dart';
 import 'package:my_beats/pages/home.dart';
-import 'package:my_beats/pages/test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
