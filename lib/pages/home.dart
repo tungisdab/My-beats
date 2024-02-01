@@ -26,46 +26,69 @@ class _HomeState extends State<Home> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             SongHeader(),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             TrendingSongSlider(),
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 35,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Color(0xFFF8CDDA),
-                          Color.fromARGB(255, 103, 130, 239),
+                Obx(
+                  () => InkWell(
+                    onTap: () {
+                      // songDataController.getLocalSongs();
+                      songDataController.isDeviceSong.value = false;
+                    },
+                    child: Container(
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                              Color(0xFFF8CDDA),
+                              Color.fromARGB(255, 103, 130, 239),
+                            ],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(2, 2),
+                                blurRadius: 10,
+                                spreadRadius: 1)
+                          ]),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Cloud Song",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                    color: !songDataController.isDeviceSong.value
+                                        ? Colors.black
+                                        : Colors.deepPurpleAccent,
+                                    fontSize: 20),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          AnimatedContainer(
+                            duration: Duration(microseconds: 300),
+                            child: Icon(Icons.favorite,
+                                color: songDataController.isDeviceSong.value
+                                    ? Colors.white
+                                    : Colors.red),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
                         ],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(2, 2),
-                            blurRadius: 10,
-                            spreadRadius: 1)
-                      ]),
-                  child: Center(
-                    child: InkWell(
-                      onTap: () {
-                        // songDataController.getLocalSongs();
-                        songDataController.isDeviceSong.value = false;
-                      },
-                      child: Text(
-                        "Cloud Song",
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: songDataController.isDeviceSong.value
-                                ? Colors.black
-                                : Colors.deepPurpleAccent,
-                            fontSize: 20),
                       ),
                     ),
                   ),
@@ -85,44 +108,67 @@ class _HomeState extends State<Home> {
                 //     ),
                 //   ),
                 // ),
-                Container(
-                  height: 35,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Color(0xFFF8CDDA),
-                          Color.fromARGB(255, 103, 130, 239),
+                Obx(
+                  () => InkWell(
+                    onTap: () async {
+                      songDataController.isDeviceSong.value = true;
+                      await songDataController.checkAndRequestPermissions(
+                          retry: true);
+                      await songDataController.getLocalSongs();
+                    },
+                    child: Container(
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                              Color(0xFFF8CDDA),
+                              Color.fromARGB(255, 103, 130, 239),
+                            ],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(2, 2),
+                                blurRadius: 10,
+                                spreadRadius: 1)
+                          ]),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Device Song",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                    color: !songDataController.isDeviceSong.value
+                                        ? Colors.deepPurple
+                                        : Colors.black,
+                                    fontSize: 20),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          AnimatedContainer(
+                            duration: Duration(microseconds: 300),
+                            child: Icon(Icons.favorite,
+                                color: !songDataController.isDeviceSong.value
+                                    ? Colors.white
+                                    : Colors.red),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
                         ],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(2, 2),
-                            blurRadius: 10,
-                            spreadRadius: 1)
-                      ]),
-                  child: Center(
-                    child: InkWell(
-                      onTap: () async {
-                        songDataController.isDeviceSong.value = true;
-                        await songDataController.checkAndRequestPermissions(
-                            retry: true);
-                        await songDataController.getLocalSongs();
-                      },
-                      child: Text(
-                        "Device Song",
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: songDataController.isDeviceSong.value
-                                ? Colors.deepPurpleAccent
-                                : Colors.deepPurpleAccent,
-                            fontSize: 20),
                       ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
             SizedBox(

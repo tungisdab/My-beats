@@ -39,6 +39,7 @@ class _SongTileState extends State<SongTile> {
                 Icons.music_note,
                 color: Colors.white,
               ),
+              SizedBox(width: 10,),
               Flexible(
                 child: Text(
                   "$songName",
