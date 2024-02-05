@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_beats/pages/side_bar.dart';
+import 'package:my_beats/pages/side_menu.dart';
 
 class SongHeader extends StatefulWidget {
   const SongHeader({super.key});
@@ -19,14 +22,9 @@ class _SongHeaderState extends State<SongHeader> {
       ]);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Icon(
-          Icons.dehaze_rounded,
-          size: 37,
-        ),
-        Row(
+    return Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -54,10 +52,6 @@ class _SongHeaderState extends State<SongHeader> {
             ),
           ],
         ),
-        CircleAvatar(
-          backgroundImage: AssetImage("assets/icons/icon_2.jpg"),
-        ),
-      ],
     );
   }
 }

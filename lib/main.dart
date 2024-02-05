@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:my_beats/config/theme.dart';
 import 'package:my_beats/firebase_options.dart';
 import 'package:my_beats/pages/home.dart';
+import 'package:my_beats/pages/primary_home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'My Beats',
-      home: Home(),
+      home: PrimaryHome(),
       // home: Test(),
       theme: darkTheme,
     );

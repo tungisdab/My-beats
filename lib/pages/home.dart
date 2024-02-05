@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_beats/components/sidebar_btn.dart';
 import 'package:my_beats/components/song_header.dart';
 import 'package:my_beats/components/trending_song_slider.dart';
 import 'package:my_beats/controller/cloud_song_controller.dart';
@@ -70,9 +71,10 @@ class _HomeState extends State<Home> {
                                 .textTheme
                                 .bodySmall
                                 ?.copyWith(
-                                    color: !songDataController.isDeviceSong.value
-                                        ? Colors.black
-                                        : Colors.deepPurpleAccent,
+                                    color:
+                                        !songDataController.isDeviceSong.value
+                                            ? Colors.black
+                                            : Colors.deepPurpleAccent,
                                     fontSize: 20),
                           ),
                           SizedBox(
@@ -93,21 +95,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-
-                // InkWell(
-                //   onTap: () async {
-                //     songDataController.isDeviceSong.value = true;
-                //     await songDataController.storagePermission();
-                //   },
-                //   child: Text(
-                //     "Device Song",
-                //     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                //       color: songDataController.isDeviceSong.value
-                //           ? primaryColor
-                //           : lableColor,
-                //     ),
-                //   ),
-                // ),
+        
                 Obx(
                   () => InkWell(
                     onTap: () async {
@@ -146,9 +134,10 @@ class _HomeState extends State<Home> {
                                 .textTheme
                                 .bodySmall
                                 ?.copyWith(
-                                    color: !songDataController.isDeviceSong.value
-                                        ? Colors.deepPurple
-                                        : Colors.black,
+                                    color:
+                                        !songDataController.isDeviceSong.value
+                                            ? Colors.deepPurple
+                                            : Colors.black,
                                     fontSize: 20),
                           ),
                           SizedBox(

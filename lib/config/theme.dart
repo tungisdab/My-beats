@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:my_beats/config/color.dart';
 
+final bgColor = LinearGradient(
+    colors: [Colors.deepPurple.shade200, Colors.blue.shade300],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
 final darkTheme = ThemeData(
+  
   useMaterial3: true,
   // brightness: Brightness.dark,
-  colorScheme: const ColorScheme.dark(
-    background: bgColor,
+  colorScheme: ColorScheme.dark(
+    background: bgColor.colors[0],
     primary: primaryColor,
   ),
   

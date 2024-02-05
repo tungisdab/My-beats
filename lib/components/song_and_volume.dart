@@ -35,7 +35,7 @@ class _SongDetailState extends State<SongAndVolume> {
                 GaugeRange(
                   startValue: 0,
                   endValue: songPlayerController.volumLavel.value,
-                  color: primaryColor,
+                  color: Colors.red
                 )
               ],
               pointers: [
@@ -71,7 +71,7 @@ class _SongDetailState extends State<SongAndVolume> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(1000),
                       image: DecorationImage(
-                          image: AssetImage("assets/images/ig.png"),
+                          image: AssetImage("assets/icons/icon_2.jpg"),
                           fit: BoxFit.cover),
                       color: divColor,
                     ),
