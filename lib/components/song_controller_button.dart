@@ -35,7 +35,7 @@ class _SongControllerButtonState extends State<SongControllerButton> {
                   },
                   min: 0,
                   max: songPlayerController.sliderMaxValue.value,
-                  activeColor: Color.fromARGB(255, 231, 171, 134),
+                  activeColor: Colors.red.shade50,
                   inactiveColor: Color.fromARGB(255, 183, 184, 181),
                 ),
               ),

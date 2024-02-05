@@ -33,10 +33,38 @@ class _SideMenuState extends State<SideMenu> {
             ]),
           child: Column(
             children: [
-              SizedBox(height: 30),
+              Container(
+                height: 100, 
+                width: 288,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(width: 10,), 
+                        CircleAvatar(
+                          backgroundImage: AssetImage(
+                            "assets/icons/icon_2.jpg",
+                          ),
+                          backgroundColor: Colors.white,
+                        ),
+                        SizedBox(width: 10,), 
+                        Text(
+                          "My Beats",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               
               Padding(
-                padding: const EdgeInsets.only(top: 30.0, bottom: 30),
+                padding: const EdgeInsets.only(top: 10, bottom: 30),
                 child: Divider(
                   color: Colors.white,
                   height: 1,

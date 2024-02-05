@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_beats/config/theme.dart';
 
 class SideBarBtn extends StatefulWidget {
   final bool isSideBarOpen;
@@ -16,7 +17,7 @@ class _SideBarBtnState extends State<SideBarBtn> {
     bool isSideBarOpen = widget.isSideBarOpen;
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(top: 19.0, left: 10),
+        padding: const EdgeInsets.only(top: 10.0, left: 10),
         child: InkWell(
           onTap: () {
             widget.onToggleCallback();
@@ -25,7 +26,7 @@ class _SideBarBtnState extends State<SideBarBtn> {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-                color: Colors.deepPurpleAccent.shade100,
+                color:  bgColor.colors[0],
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(

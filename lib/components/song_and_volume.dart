@@ -35,12 +35,12 @@ class _SongDetailState extends State<SongAndVolume> {
                 GaugeRange(
                   startValue: 0,
                   endValue: songPlayerController.volumLavel.value,
-                  color: Colors.red
+                  color: Colors.deepPurple.shade300,
                 )
               ],
               pointers: [
                 MarkerPointer(
-                  color: primaryColor,
+                  color: Colors.red.shade100,
                   value: songPlayerController.volumLavel.value,
                   onValueChanged: (value) {
                     songPlayerController.changeVolume(value);
@@ -63,7 +63,7 @@ class _SongDetailState extends State<SongAndVolume> {
                       image: DecorationImage(
                           image: NetworkImage(songPlayerController.albumUrl.value),
                           fit: BoxFit.cover),
-                      color: divColor,
+                      color: Colors.deepPurpleAccent,
                     ),
                   ) : Container(
                     width: 250,
@@ -73,7 +73,7 @@ class _SongDetailState extends State<SongAndVolume> {
                       image: DecorationImage(
                           image: AssetImage("assets/icons/icon_2.jpg"),
                           fit: BoxFit.cover),
-                      color: divColor,
+                      color: Colors.deepPurpleAccent,
                     ),
                   ),
                 )
